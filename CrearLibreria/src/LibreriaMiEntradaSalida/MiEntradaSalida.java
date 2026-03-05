@@ -1,5 +1,6 @@
-package Libreria;
+package LibreriaMiEntradaSalida;
 import java.util.Scanner;
+
 
 import color.Color;
 
@@ -75,12 +76,12 @@ public class MiEntradaSalida {
     }
 
     public static char solicitarCaracter(String msg) {
-        char caracter;
+        char caracter = 0;
 
         do {
             System.out.println(msg);
             String entrada = teclado.nextLine().trim();
-
+            
             if (entrada.isEmpty()) {
             	System.out.println(Color.colorize(Color.COLOR_PURPLE,"Error no se ha introducido ningún carácter"));
               
@@ -88,7 +89,7 @@ public class MiEntradaSalida {
             } else {
                 caracter = entrada.charAt(0);
             }
-
+           
         } while (!Character.isAlphabetic(caracter));
 
         return caracter;
