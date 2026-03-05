@@ -31,23 +31,28 @@ public class UsuariosRegistrados {
     }
 
     private int buscarIndice(String nombreUsuario) {
+    	int in=-1;
         for (int i = 0; i < contadorUsuarios; i++) {
             if (listaUsuarios[i].getNombreUsuario().equals(nombreUsuario)) {
-                return i;
+                in=i;
             }
         }
-        return -1;
+        return in;
     }
 
     public void cambiarUsuarioAInactivo(String nombreUsuario) throws UsuariosException {
         int indice = buscarIndice(nombreUsuario);
-        if (indice == -1) throw new UsuariosException("Usuario no encontrado.");
+        if (indice == -1) {
+        	throw new UsuariosException("Usuario no encontrado.");
+        }
         listaUsuarios[indice].setActivo(false);
     }
 
     public void cambirUsuarioAActivo(String nombreUsuario) throws UsuariosException {
         int indice = buscarIndice(nombreUsuario);
-        if (indice == -1) throw new UsuariosException("Usuario no encontrado.");
+        if (indice == -1) {
+        	throw new UsuariosException("Usuario no encontrado.");
+        }
         listaUsuarios[indice].setActivo(true);
     }
 
