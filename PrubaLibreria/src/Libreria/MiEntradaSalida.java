@@ -1,6 +1,7 @@
 package Libreria;
-
 import java.util.Scanner;
+
+import color.Color;
 
 public class MiEntradaSalida {
     private static Scanner teclado = new Scanner(System.in);
@@ -21,7 +22,8 @@ public class MiEntradaSalida {
             try {
                 numero = Integer.parseInt(teclado.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Error no es un número");
+            	System.out.println(Color.colorize(Color.COLOR_PURPLE, "Error no es un número"));
+           
                 error = true;
             }
         } while (error);
@@ -42,7 +44,8 @@ public class MiEntradaSalida {
                     error = true;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Error no es un número");
+            	System.out.println(Color.colorize(Color.COLOR_PURPLE, "Error no es un número"));
+              
                 error = true;
             }
         } while (error);
@@ -63,7 +66,7 @@ public class MiEntradaSalida {
                     error = true;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Error no es un número");
+            	System.out.println(Color.colorize(Color.COLOR_PURPLE, "Error no es un número"));
                 error = true;
             }
         } while (error);
@@ -79,7 +82,8 @@ public class MiEntradaSalida {
             String entrada = teclado.nextLine().trim();
 
             if (entrada.isEmpty()) {
-                System.out.println("Error no se ha introducido ningún carácter");
+            	System.out.println(Color.colorize(Color.COLOR_PURPLE,"Error no se ha introducido ningún carácter"));
+              
                 caracter = 0;
             } else {
                 caracter = entrada.charAt(0);
@@ -98,7 +102,7 @@ public class MiEntradaSalida {
             String entrada = teclado.nextLine().trim();
 
             if (entrada.isEmpty()) {
-                System.out.println("Error no se ha introducido ningún carácter");
+            	System.out.println(Color.colorize(Color.COLOR_PURPLE,"Error no se ha introducido ningún carácter"));
                 caracter = 0;
             } else {
                 caracter = entrada.toUpperCase().charAt(0);
