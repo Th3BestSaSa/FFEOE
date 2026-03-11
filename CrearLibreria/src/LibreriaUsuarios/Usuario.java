@@ -4,12 +4,12 @@ import java.util.Objects;
 
 public class Usuario {
 	private String nombreUsuario;
-	private String contraseña;
+	private String contrasenna;
 	private boolean activo;
 
-	public Usuario(String nombreUsuario, String contraseña, boolean activo) throws UsuariosException {
+	public Usuario(String nombreUsuario, String contrasenna, boolean activo) throws UsuariosException {
 		this.nombreUsuario = nombreUsuario;
-		setContraseña(contraseña); // Validamos al construir
+		setContraseña(contrasenna); // Validamos al construir
 		this.activo = activo;
 	}
 
@@ -22,15 +22,15 @@ public class Usuario {
 		this.nombreUsuario = nombreUsuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenna() {
+		return contrasenna;
 	}
 
-	public void setContraseña(String contraseña) throws UsuariosException {
-		if (contraseña.length() < 8) {
+	public void setContraseña(String contrasenna) throws UsuariosException {
+		if (contrasenna.length() < 8) {
 			throw new UsuariosException("La contraseña debe tener al menos 8 caracteres.");
 		}
-		this.contraseña = contraseña;
+		this.contrasenna = contrasenna;
 	}
 
 	public boolean isActivo() {
@@ -43,8 +43,11 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		String estado = activo ? "Activo" : "Inactivo";
-		return String.format("Usuario: /n Contraseña: /n /n", nombreUsuario, contraseña, estado);
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("Usuario: ").append(nombreUsuario).append("\n");
+	    sb.append("Contraseña: ").append(contrasenna).append("\n");
+	    sb.append("Estado: ").append(activo ? "Activo" : "Inactivo");
+	    return sb.toString();
 	}
 
 	@Override
