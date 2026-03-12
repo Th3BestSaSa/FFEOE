@@ -1,18 +1,20 @@
 package Patrones;
 
+import java.util.Scanner;
+
 public class MetodosPatrones {
 	private static final String PATRON_DNI = "^[0-9]{8}[A-z]$";
 	private static final String PATRON_TELEFONO = "^(\\+34)?[6|9]{3}//-[0-9]{6}$";
-	private static final String PATRON_CADENA_CON_UN_NUMERO=".*\\d.*";
+	private static final String PATRON_CADENA_CON_UN_NUMERO=".*[1-9].*";
 	private static final String PATRON_CODIGO_POSTAL = "^[0-9]{5}$";
 	private static final String PATRON_CADENA_MAYUS=".*[A-Z].*";
 	private static final String PATRON_CADENA_MIN=".*[a-z].*";
 	private static final String PATRON_NSS="[0-9]{2}[ ]?[0-9]{8}[ ]?[0-9]{2}";
 	private static final String PATRON_MATRICULA = "^[0-9]{4}[BCDFGHJKLMNPRSTVWXYZ]{3}$";
-	private static final String PATRON_PASSWORD ="^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$";
+	private static final String PATRON_PASSWORD ="^(?=.*[A-Z])(?=.*[a-z])(?=.*[1-9]).{8,}$";
 	private static final String PATRON_IBAN = "^ES[0-9]{2}(\\s?[0-9]{4}){5}$";
 	private static final String PATRON_COLOR ="^//#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})$";
-	private static final String PATRON_FECHA ="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
+	private static final String PATRON_FECHA ="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[1-9]{4}$";
 	private static final String PATRON_URL = "^( http://https://)?[A-z]{1,20}\\.[a-z]{1,3}$";
 	
 	
@@ -55,4 +57,5 @@ public class MetodosPatrones {
 	public static boolean validarURL(String cadena) {
 	    return cadena.matches(PATRON_URL);
 	}
+
 }
