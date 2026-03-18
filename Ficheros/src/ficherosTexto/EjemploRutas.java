@@ -8,7 +8,7 @@ public class EjemploRutas {
 	
 	public static void main(String[] args) {
 		// Forma CORRECTA y multiplataforma:
-		Path rutaSegura = Paths.get("documentos", "registros", "alumnos.txt");
+		Path rutaSegura = Paths.get("documentos", "registros", "alumnos.txt");//ruta relativa
 
 		System.out.println("La ruta construida es: " + rutaSegura.toString());
 		// En Windows imprimirá: documentos\registros\alumnos.txt
@@ -26,7 +26,6 @@ public class EjemploRutas {
 		} else if (Files.isRegularFile(ruta)) {
 			System.out.println("Es un archivo normal.");
 		}
-
 	}
 
 	public static void crearCarpeta() {
