@@ -16,8 +16,15 @@ public class CrearDocumento {
 		// TODO Auto-generated method stub
 		System.out.println("NOMBRE CARPETA");
 		String nombreCarpeta=teclado.nextLine();
-		System.out.println("nNOMBRE ARCHIVO");
+		System.out.println("NOMBRE ARCHIVO");
 		String nombreArchivo=teclado.nextLine();
+		crearDocumento(nombreCarpeta, nombreArchivo);
+		
+	}
+
+	
+
+	private static void crearDocumento(String nombreCarpeta, String nombreArchivo) {
 		Path ruta = Paths.get(nombreCarpeta, nombreArchivo);
 		 if (Files.exists(ruta)) {
 				System.out.println("El archivo existe.");
