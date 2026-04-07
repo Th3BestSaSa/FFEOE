@@ -1,0 +1,5 @@
+2026-03-18 08:10:45 [ERROR] Database: Connection timeout at pool_2.
+2026-03-18 08:20:01 [ERROR] FileSystem: Write permission denied in /var/data/uploads.
+2026-03-18 08:32:45 [ERROR] API_Gateway: 500 Internal Server Error at /api/v1/payment.
+2026-03-18 08:50:22 [ERROR] NetworkStack: Packet loss detected on eth0 (15% loss).
+2026-03-18 09:05:33 [ERROR] Kernel: Hardware interrupt error at IRQ 0x0042.
