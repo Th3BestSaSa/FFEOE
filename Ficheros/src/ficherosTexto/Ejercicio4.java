@@ -18,19 +18,18 @@ public class Ejercicio4 {
     }
 
     private static void procesarArchivo(Path entrada, Path salida) {
-        int totalLines = 0;
-        boolean huboError = false;
+        
+        boolean error = false;
 
         try (BufferedReader reader = Files.newBufferedReader(entrada);
              BufferedWriter writer = Files.newBufferedWriter(salida)) {
 
             String linea;
             while ((linea = reader.readLine()) != null) {
-                totalLines++;
 
                 if (!esLineaValida(linea)) {
-                    huboError = true;
-                    continue; // Marcamos error pero seguimos para validar el resto
+                    error = true;
+                   
                 }
 
                 String lineaProcesada = anonimizarLinea(linea);
@@ -40,10 +39,10 @@ public class Ejercicio4 {
 
         } catch (IOException e) {
             System.err.println("Error de lectura/escritura: " + e.getMessage());
-            huboError = true;
+            error = true;
         }
 
-        finalizarProceso(salida, huboError, totalLines);
+        finalizarProceso(salida, error);
     }
 
     private static boolean esLineaValida(String linea) {
@@ -59,6 +58,13 @@ public class Ejercicio4 {
 
         // Anonimizar Email: a*****@dominio.com
         String[] pEmail = email.split("@");
+        StringBuilder sb= new StringBuilder();
+        sb.append(pEmail[0].charAt(0));
+        for (int i = 0; i < pEmail.length-1; i++) {
+        	sb.append(string);
+	}
+        
+		}
         String emailAnon = pEmail[0].charAt(0) + "*".repeat(pEmail[0].length() - 1) + "@" + pEmail[1];
 
         // Anonimizar Teléfono: XXXXXX123
@@ -69,16 +75,7 @@ public class Ejercicio4 {
         return String.format("%s | %s | %s | %s", id, nombre, emailAnon, telAnon);
     }
 
-    private static void finalizarProceso(Path salida, boolean huboError, int total) {
-        if (huboError) {
-            try {
-                Files.deleteIfExists(salida);
-                System.err.println("Se detectaron errores en el origen. El archivo de salida ha sido eliminado.");
-            } catch (IOException e) {
-                System.err.println("No se pudo limpiar el archivo tras el error.");
-            }
-        } else {
-            System.out.println("Proceso finalizado con éxito. Líneas procesadas: " + total);
-        }
+    private static void finalizarProceso(Path salida, boolean error) {
+        
     }
 }
