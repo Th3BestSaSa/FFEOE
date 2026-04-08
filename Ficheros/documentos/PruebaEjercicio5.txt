@@ -1,0 +1,10 @@
+F notas.txt
+F Informe.pdf
+F Tesis.doc
+F imagen.jpg
+F CODIGO.cpp
+F Script.pyc
+F Proyecto.zip
+F datos.csv
+F Manual.pdf
+F backup.tar
