@@ -8,74 +8,101 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Ejercicio4 {
-    private static final String PATRON_LINEA = "^(\\d+)\\s*\\|\\s*([^|]+)\\s*\\|\\s*([^|]+)\\s*\\|\\s*(\\d+)$";
 
-    public static void main(String[] args) {
-        Path inputFile = Paths.get("documentos", "clientes.txt");
-        Path outputFile = Paths.get("documentos", "clientes_anonimos.txt");
+	private static final String PATRON_LINEA = "^(\\d+)\\s*\\|\\s*([^|]+)\\s*\\|\\s*([^|]+)\\s*\\|\\s*(\\d+)$";
 
-        procesarArchivo(inputFile, outputFile);
-    }
+	public static void main(String[] args) {
+		Path inputFile = Paths.get("documentos", "clientes.txt");
+		Path outputFile = Paths.get("documentos", "clientes_anonimos.txt");
 
-    private static void procesarArchivo(Path entrada, Path salida) {
-        
-        boolean error = false;
-
-        try (BufferedReader reader = Files.newBufferedReader(entrada);
-             BufferedWriter writer = Files.newBufferedWriter(salida)) {
-
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-
-                if (!esLineaValida(linea)) {
-                    error = true;
-                   
-                }
-
-                String lineaProcesada = anonimizarLinea(linea);
-                writer.write(lineaProcesada);
-                writer.newLine();
-            }
-
-        } catch (IOException e) {
-            System.err.println("Error de lectura/escritura: " + e.getMessage());
-            error = true;
-        }
-
-        finalizarProceso(salida, error);
-    }
-
-    private static boolean esLineaValida(String linea) {
-        return linea.matches(PATRON_LINEA) && linea.contains("@");
-    }
-
-    private static String anonimizarLinea(String linea) {
-        String[] partes = linea.split("\\s*\\|\\s*");
-        String id = partes[0];
-        String nombre = partes[1];
-        String email = partes[2];
-        String telefono = partes[3];
-
-        // Anonimizar Email: a*****@dominio.com
-        String[] pEmail = email.split("@");
-        StringBuilder sb= new StringBuilder();
-        sb.append(pEmail[0].charAt(0));
-        for (int i = 0; i < pEmail.length-1; i++) {
-        	sb.append(string);
+		procesarArchivo(inputFile, outputFile);
+		
 	}
-        
+
+	private static void procesarArchivo(Path inputFile, Path outputFile) {
+		boolean error = false;
+
+		try (BufferedReader reader = Files.newBufferedReader(inputFile);
+				BufferedWriter writer = Files.newBufferedWriter(outputFile)) {
+
+			String linea;
+			while ((linea = reader.readLine()) != null) {
+
+				if (!esLineaValida(linea)) {
+					error = true;
+				}
+
+				String lineaProcesada = anonimizarLinea(linea);
+				writer.write(lineaProcesada);
+				writer.newLine();
+			}
+
+		} catch (IOException e) {
+			System.err.println("Error de lectura/escritura: " + e.getMessage());
+			error = true;
 		}
-        String emailAnon = pEmail[0].charAt(0) + "*".repeat(pEmail[0].length() - 1) + "@" + pEmail[1];
+		
+		finalizarArchivo(outputFile,error);
+	}
 
-        // Anonimizar Teléfono: XXXXXX123
-        int visible = 3;
-        String telAnon = "X".repeat(Math.max(0, telefono.length() - visible)) + 
-                         telefono.substring(Math.max(0, telefono.length() - visible));
+	private static void finalizarArchivo(Path outputFile, boolean error)  {
+		// TODO Auto-generated method stub
+		if (error) {
+			try {
+				Files.delete(outputFile);
+				System.out.println("Se han encontrado fallos");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("falla por " + e.getMessage());
+				
+			}
+		}
+	}
 
-        return String.format("%s | %s | %s | %s", id, nombre, emailAnon, telAnon);
-    }
+	private static boolean esLineaValida(String linea) {
+		return linea.matches(PATRON_LINEA) && linea.contains("@");
+	}
 
-    private static void finalizarProceso(Path salida, boolean error) {
-        
-    }
+	private static String anonimizarLinea(String linea) {
+		boolean error = false;
+		String[] partes = linea.split("\\|");
+		String id = partes[0];
+		String nombre = partes[1];
+		String email = partes[2];
+		String telefono = partes[3];
+
+		if (!email.contains("@")) {
+			error = true;
+
+		}
+
+		String[] partesEmail = email.split("@");
+		String usuario = partesEmail[0];
+		String dominio = partesEmail[1];
+
+		// Para anonimizar el email
+		StringBuilder emailAnon = new StringBuilder();
+		emailAnon.append(usuario.charAt(0));
+		for (int i = 1; i < usuario.length(); i++) {
+			emailAnon.append('*');
+		}
+
+		emailAnon.append('@').append(dominio);
+		// Para anonimizar el teléfono
+		StringBuilder telefonoAnon = new StringBuilder();
+
+		for (int i = 0; i < telefono.length() - 3; i++) {
+			telefonoAnon.append('X');
+		}
+		telefonoAnon.append(telefono.substring(telefono.length() - 3));
+
+		// Convertimos a String si lo necesitamos
+
+		String emailAninimo = emailAnon.toString();
+		String telefonoAninimo = telefonoAnon.toString();
+
+		String resultado = id + " | " + nombre + emailAninimo + " | " + telefonoAninimo;
+		return resultado;
+
+	}
 }

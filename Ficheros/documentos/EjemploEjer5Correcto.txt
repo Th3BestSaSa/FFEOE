@@ -1,0 +1,4 @@
+F leeme.txt
+F prueba.doc
+F fichero.txt
+F otro.txt
