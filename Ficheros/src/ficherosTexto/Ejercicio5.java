@@ -19,7 +19,7 @@ public class Ejercicio5 {
 	        try (BufferedReader reader = Files.newBufferedReader(inputFile)) {
 	            String linea;
 	            while ((linea = reader.readLine()) != null) {
-	            	//me va dar algo
+	           	
 	                if (!validarLinea(linea)) {
 	                    error = true;
 	                }
