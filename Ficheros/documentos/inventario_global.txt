@@ -1,0 +1,31 @@
+REF001,Monitor Dell 24,20
+REF002,Teclado Mecanico RGB,30
+REF003,Raton Logi,12
+REF004,Alfombrilla XL,30
+REF005,Auriculares Sony,10
+REF006,Cable HDMI 2.1,50
+REF007,Disco SSD 1TB,15
+REF008,Memoria RAM 16GB,25
+REF009,Webcam HD,14
+REF010,Soporte Monitor,6
+REF011,Microfono USB,10
+REF012,Adaptador USB-C,40
+REF013,Funda Portatil,18
+REF014,Altavoces Creative,10
+REF015,Lampara Escritorio,7
+REF016,Hub USB 3.0,22
+REF017,Pilas Recargables,100
+REF018,Tarjeta MicroSD 64GB,35
+REF019,Limpiador Pantallas,12
+REF021,Proyector Portatil,3
+REF022,Impresora Laser,2
+REF023,Escaner Documentos,4
+REF024,Mando Gaming,15
+REF025,Base Refrigeradora,9
+REF026,Tableta Grafica,7
+REF027,Router Wi-Fi 6,11
+REF028,Repetidor Señal,20
+REF029,Disco Duro Externo 2TB,8
+REF030,Cable Ethernet 5m,60
+REF031,Cargador Universal,13
+REF032,Teclado Numerico,25

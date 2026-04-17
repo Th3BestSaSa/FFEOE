@@ -43,7 +43,7 @@ public class Ejercicio7 {
 					@Override
 					public int compare(Alumno o1, Alumno o2) {
 						// TODO Auto-generated method stub
-						return Double.compare(o1.getNota(), o2.getNota());
+						return Double.compare(o2.getNota(), o1.getNota());
 					}
 
 				});
@@ -57,7 +57,6 @@ public class Ejercicio7 {
 			System.err.println("Error al acceder a los archivos: " + e.getMessage());
 		}
 	}
-
 	private static boolean esLineaValida(String linea) {
 		return linea.matches(PATRON_LINEA) && linea.contains("@");
 	}
