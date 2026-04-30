@@ -11,7 +11,6 @@ public class EjemploInsert {
 	private static final String USUARIO = "root";
 	
 
-
 	public static void main(String[] args) {
 
 		try (Connection conexion = DriverManager.getConnection(URL_BD, USUARIO, CONTRASENNA);
