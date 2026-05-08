@@ -1,5 +1,6 @@
 package Ejercicio1;
 
+
 import java.sql.*;
 
 
@@ -21,16 +22,21 @@ public class AutoresDAO {
         }
     }
 
-    public static void consultarAutores() throws SQLException {
-        String sql = "SELECT * FROM autor";
-        
-        try (Connection con = DataBaseConection.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(sql);
-             ResultSet rs = pstmt.executeQuery()) {
-            
-            while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("Id_Autor") + " - Nombre: " + rs.getString("nombreAutor"));
-            }
-        }
-    }
+    public static ResultSet consultarAutores() throws SQLException {
+
+		ResultSet resultadoQuery;
+		Statement sentencia= GestionDB.getConexion().createStatement();
+		resultadoQuery = sentencia.executeQuery("select * from autor");
+
+		return resultadoQuery;
+	}
+
+	public static ResultSet consultarAutoresPorNombre(String nombre) throws SQLException{
+		ResultSet resultadoQuery;
+		Statement sentencia = GestionDB.getConexion().createStatement();
+		resultadoQuery = sentencia.executeQuery("select * from autor WHERE nombreAutor LIKE '%" + nombre + "%'");
+
+		return resultadoQuery;
+		
+	}
 }
